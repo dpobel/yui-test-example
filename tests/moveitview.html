@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head><title>Move it view tests</title></head>
+<body>
+
+<div class="container">
+    <button disabled="disabled" class="moveit">Move!</button>
+</div>
+
+<script type="text/javascript" src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="moveitview-tests.js"></script>
+<script>
+    (function (win) {
+        var filter = (win.location.search.match(/[?&]filter=([^&]+)/) || [])[1];
+        YUI({
+            coverage: ['moveitview'],
+            modules: {
+                "moveitview": {
+                    requires: ['event-tap', 'node', 'view'],
+                    fullpath: "../moveitview" + (filter ? "-" + filter : "") + ".js"
+                }
+            }
+        }).use('moveitview-tests', function (Y) {
+            Y.Test.Runner.run();
+        });
+    })(window);
+</script>
+</body>
+</html>
